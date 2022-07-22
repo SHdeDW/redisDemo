@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+<head>
+    <title>myTest</title>
+</head>
+<body>
+    <div>
+        <button id="select" type="button">获取按钮</button>
+    </div>
+    <div>
+        <button id="insert" type="button">插入按钮</button>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#select").click(function(){
+            console.log("button触发");
+            $.ajax({
+                    url: "http://localhost:8080/selectController.do",
+                    resultType:"json",
+                    type: 'POST',
+                    success: function () {
+                        console.log('success');
+                    },
+                    error: function () {
+                        console.log('error');
+                    }
+                }
+            )
+
+        })
+        }
+    )
+    $(document).ready(function() {
+            $("#insert").click(function(){
+                console.log("button触发");
+                $.ajax({
+                        url: "http://localhost:8080/insertController.do",
+                        resultType:"json",
+                        type: 'POST',
+                        success: function () {
+                            console.log('success');
+                        },
+                        error: function () {
+                            console.log('error');
+                        }
+                    }
+                )
+
+            })
+        }
+    )
+</script>
