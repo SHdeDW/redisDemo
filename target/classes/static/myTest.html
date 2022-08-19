@@ -13,9 +13,74 @@
     <div>
         <button id="insert" type="button">插入按钮</button>
     </div>
+    <div>
+        <button id="redisTest" type="button">redis测试按钮</button>
+    </div>
+    <div>
+        <button id="change" type="button">设为1</button>
+    </div>
+    <div>
+        <button id="return" type="button">设为2</button>
+    </div>
+    <div>
+        <button id="delete" type="button">删除</button>
+    </div>
+    <div>
+        <form id="getForm">
+            <label>获取的key</label><input name="key" id="get_key" />
+        </form>
+        <button id="getValue">获得的值</button>
+    </div>
+    <div>
+        <form id="changeForm">
+            <label>修改的key</label><input name="key" id="change_key" />
+            <label>修改的value</label><input name="value" id="change_value" />
+        </form>
+        <button id="changeValue">修改</button>
+    </div>
 </body>
 </html>
 <script type="text/javascript">
+    $(document).ready(function (){
+        $("#getValue").click(function (){
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/getValue.do",
+                dataType: 'json',
+                data: {
+                    'key':$('#get_key').val()
+                },
+                success:function (data){
+                    if (data.result =="100") console.log(data.data);
+                    else if(data.result=="200") console.log("为空");
+                },
+                error:function (data){
+                    console.log("error");
+                }
+            })
+        })
+    })
+    $(document).ready(function (){
+        $("#changeValue").click(function (){
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/changeValue.do",
+                dataType: 'json',
+                data: {
+                    'key':$('#change_key').val(),
+                    'value':$('#change_value').val()
+                },
+                success:function (data){
+                    if (data.result =="100") console.log("修改成功");
+                    else console.log("修改失败");
+                },
+                error:function (data){
+                    console.log("error");
+                }
+            })
+        })
+    })
+
     $(document).ready(function() {
         $("#select").click(function(){
             console.log("button触发");
@@ -54,4 +119,81 @@
             })
         }
     )
+    $(document).ready(function() {
+            $("#redisTest").click(function(){
+                console.log("button触发");
+                $.ajax({
+                        url: "http://localhost:8080/redisTestController.do",
+                        resultType:"json",
+                        type: 'POST',
+                        success: function () {
+                            console.log('success');
+                        },
+                        error: function () {
+                            console.log('error');
+                        }
+                    }
+                )
+
+            })
+        }
+    )
+    $(document).ready(function() {
+            $("#change").click(function(){
+                console.log("button触发");
+                $.ajax({
+                        url: "http://localhost:8080/change.do",
+                        resultType:"json",
+                        type: 'POST',
+                        success: function () {
+                            console.log('success');
+                        },
+                        error: function () {
+                            console.log('error');
+                        }
+                    }
+                )
+
+            })
+        }
+    )
+    $(document).ready(function() {
+            $("#return").click(function(){
+                console.log("button触发");
+                $.ajax({
+                        url: "http://localhost:8080/returnValue.do",
+                        resultType:"json",
+                        type: 'POST',
+                        success: function () {
+                            console.log('success');
+                        },
+                        error: function () {
+                            console.log('error');
+                        }
+                    }
+                )
+
+            })
+        }
+    )
+    $(document).ready(function() {
+            $("#delete").click(function(){
+                console.log("button触发");
+                $.ajax({
+                        url: "http://localhost:8080/deleteValue.do",
+                        resultType:"json",
+                        type: 'POST',
+                        success: function () {
+                            console.log('success');
+                        },
+                        error: function () {
+                            console.log('error');
+                        }
+                    }
+                )
+
+            })
+        }
+    )
+
 </script>

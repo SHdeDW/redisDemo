@@ -10,8 +10,9 @@ spring:
     host: 127.0.0.1
     port: 6379
   mvc:
-  version: 1.0.0
   view:
-      suffix: ".html"
+    suffix: ".html"
 mybatis-plus:
   mapper-locations: mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -10,6 +10,7 @@ spring:
     host: 127.0.0.1
     port: 6379
   mvc:
+  version: 1.0.0
   view:
       suffix: ".html"
 mybatis-plus:
